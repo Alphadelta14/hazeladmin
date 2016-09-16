@@ -15,9 +15,14 @@ import java.util.Set;
 public class App {
     public static void main(String[] args) {
         HazelcastInstance hazelcastInstance = createHazelcastClientInstance();
-        IMap<String, String> map = hazelcastInstance.getMap("remoteDownloads");
+        System.out.println("Hello world!");
+        IMap<String, String> map = hazelcastInstance.getMap("remoteDownloaders");
 
+        System.out.println(map.isLocked("npm-remote-cache/.npm/tiny-lr/package.json"));
+        System.out.println(map.isLocked("asdf"));
+        System.out.println(map.size());
         System.out.println(map.keySet());
+        System.out.println(map.values());
 
         hazelcastInstance.shutdown();
     }
